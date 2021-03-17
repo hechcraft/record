@@ -20,18 +20,19 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        @php($lastUrl = request()->segment(count(request()->segments())))
-        @if($lastUrl != 'register' && $lastUrl != 'login')
+<div id="app">
+    @php($lastUrl = request()->segment(count(request()->segments())))
+    @if($lastUrl != 'register' && $lastUrl != 'login')
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -40,7 +41,22 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                        @if($lastUrl === 'users')
+                            <li class="nav-item">
+                                <a href="{{route('users.types')}}" class="nav-link">Типы пользователей</a>
+                            </li>
+                        @endif
+
+                        @if($lastUrl === 'types')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('types.create') }}">Добавить новый тип</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('types') }}">Вывести все типы</a>
+                            </li>
+                        @endif
+                    <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -55,7 +71,8 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -76,10 +93,10 @@
                 </div>
             </div>
         </nav>
-        @endif
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    @endif
+    <main class="py-4">
+        @yield('content')
+    </main>
+</div>
 </body>
 </html>

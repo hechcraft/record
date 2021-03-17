@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userType()
+    {
+        return $this->hasOne(UserType::class, 'id','user_types_id');
+    }
 }

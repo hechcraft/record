@@ -20,3 +20,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
+Route::get('/users/types', [\App\Http\Controllers\UserController::class, 'types'])->name('users.types');
+Route::get('/users/types/create', [\App\Http\Controllers\UserController::class, 'typeCreate'])->name('users.types.create');
+Route::post('/users/verification', [\App\Http\Controllers\UserController::class, 'verification'])->name('verification');
+Route::get('/users/{user}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+Route::put('/users/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{user}', [\App\Http\Controllers\UserController::class, 'delete'])->name('users.delete');
+Route::delete('/users/types/{id}', [\App\Http\Controllers\UserController::class, 'typeDelete'])->name('users.types.delete');
+
+Route::get('/types', [\App\Http\Controllers\TypesController::class, 'index'])->name('types');
+Route::get('/types/create', [\App\Http\Controllers\TypesController::class, 'create'])->name('types.create');
+Route::post('/types', [\App\Http\Controllers\TypesController::class, 'store'])->name('types.store');
+
+//Route::get('/test', [\App\Http\Controllers\UserTypeController::class, 'index'])->name('users.types');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComputerPartsTable extends Migration
+class CreateUserTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateComputerPartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('computer_parts', function (Blueprint $table) {
+        Schema::create('user_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('type');
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
-            $table->integer('amount')->default(0);
-            $table->text('description')->nullable();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +27,6 @@ class CreateComputerPartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('computer_parts');
+        Schema::dropIfExists('user_types');
     }
 }
