@@ -38,3 +38,5 @@ Route::post('/types', [\App\Http\Controllers\TypesController::class, 'store'])->
 Route::get('/equipments', [\App\Http\Controllers\ComputerEquipmentController::class,'index'])->name('equipments');
 Route::get('/equipments/create', [\App\Http\Controllers\ComputerEquipmentController::class, 'create'])->name('equipments.create');
 Route::post('/equipments', [\App\Http\Controllers\ComputerEquipmentController::class, 'store'])->name('equipments.store');
+
+Route::view('/test', 'test');

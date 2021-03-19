@@ -28,7 +28,7 @@
                         <th scope="col">
                             <div style="display: flex; height: 36px; align-items: center">
                                 @php($type = $user->userType)
-                                {{$type->type}}
+                                {{$type->type ?? 'Роль не задана'}}
                             </div>
                         </th>
                         <th scope="col">
