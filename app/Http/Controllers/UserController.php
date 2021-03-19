@@ -61,4 +61,10 @@ class UserController extends Controller
     {
         return view('userTypes.create');
     }
+
+    public function typeStore(Request $request)
+    {
+        UserType::create($request->all());
+        return redirect()->route('users.types');
+    }
 }

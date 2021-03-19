@@ -19,12 +19,11 @@ class CreateComputerEquipmentTable extends Migration
             $table->string('name');
             $table->integer('amount')->default(0);
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('computer_parts_id')->nullable();
+            $table->json('computer_parts_id')->nullable();
 
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('computer_parts_id')->references('id')->on('computer_parts');
         });
     }
 

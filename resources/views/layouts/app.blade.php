@@ -41,21 +41,60 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        @if($lastUrl === 'users')
-                            <li class="nav-item">
-                                <a href="{{route('users.types')}}" class="nav-link">Типы пользователей</a>
-                            </li>
-                        @endif
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Оборудование
+                            </a>
 
-                        @if($lastUrl === 'types')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('types.create') }}">Добавить новый тип</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('types') }}">Вывести все типы</a>
-                            </li>
-                        @endif
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('equipments') }}">
+                                    Список оборудования
+                                </a>
+                                <a class="dropdown-item" href="{{route('equipments.create')}}">
+                                    Добавить новое оборудование
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    ??? Типы оборудования ???
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Пользователи
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('users') }}">
+                                    Пользователи
+                                </a>
+                                <a class="dropdown-item" href="{{ route('users.types') }}">
+                                    Типы пользователей
+                                </a>
+                                <a class="dropdown-item" href="{{ route('users.types.create') }}">
+                                    Добавить новый тип пользователя
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Типы
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('types') }}">
+                                    Вывести все типы
+                                </a>
+                                <a class="dropdown-item" href="{{ route('types.create') }}">
+                                    Добавить новый тип
+                                </a>
+                            </div>
+                        </li>
+
                     <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

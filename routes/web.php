@@ -25,6 +25,7 @@ Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->na
 Route::get('/users/types', [\App\Http\Controllers\UserController::class, 'types'])->name('users.types');
 Route::get('/users/types/create', [\App\Http\Controllers\UserController::class, 'typeCreate'])->name('users.types.create');
 Route::post('/users/verification', [\App\Http\Controllers\UserController::class, 'verification'])->name('verification');
+Route::post('/users/types', [\App\Http\Controllers\UserController::class, 'typeStore'])->name('users.types.store');
 Route::get('/users/{user}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
 Route::put('/users/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{user}', [\App\Http\Controllers\UserController::class, 'delete'])->name('users.delete');
@@ -34,4 +35,6 @@ Route::get('/types', [\App\Http\Controllers\TypesController::class, 'index'])->n
 Route::get('/types/create', [\App\Http\Controllers\TypesController::class, 'create'])->name('types.create');
 Route::post('/types', [\App\Http\Controllers\TypesController::class, 'store'])->name('types.store');
 
-//Route::get('/test', [\App\Http\Controllers\UserTypeController::class, 'index'])->name('users.types');
+Route::get('/equipments', [\App\Http\Controllers\ComputerEquipmentController::class,'index'])->name('equipments');
+Route::get('/equipments/create', [\App\Http\Controllers\ComputerEquipmentController::class, 'create'])->name('equipments.create');
+Route::post('/equipments', [\App\Http\Controllers\ComputerEquipmentController::class, 'store'])->name('equipments.store');

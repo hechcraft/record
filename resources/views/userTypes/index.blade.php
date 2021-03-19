@@ -12,8 +12,5 @@
                 </form>
             @endforeach
         </ul>
-        <form action="{{route('users.types.create')}}" method="get">
-            <button class="btn btn-outline-success mt-2">Добавить новый тип</button>
-        </form>
     </div>
 @endsection

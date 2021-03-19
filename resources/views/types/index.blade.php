@@ -12,10 +12,10 @@
                     </thead>
                     <tbody>
                     @foreach($computerPartsType as $partType)
-                    <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$partType->computer_parts_type}}</td>
-                    </tr>
+                        <tr>
+                            <th scope="row">{{$loop->iteration}}</th>
+                            <td>{{$partType->computer_parts_type}}</td>
+                        </tr>
                     </tbody>
                     @endforeach
                 </table>
