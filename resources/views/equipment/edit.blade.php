@@ -15,6 +15,9 @@
                 <input type="text" class="form-control" placeholder="Название" name="name"
                        aria-describedby="basic-addon1" value="{{$equipment->name}}">
             </div>
+            @error('name')
+                <div class="p-3 rounded mb-2 bg-danger text-white">{{$message}}</div>
+            @enderror
 
             <div class="input-group mb-3">
                 <select class="custom-select" name="type">
@@ -32,6 +35,9 @@
                 <input type="number" class="form-control" placeholder="Количество" name="amount" aria-label="Username"
                        aria-describedby="basic-addon1" value="{{$equipment->amount}}">
             </div>
+            @error('amount')
+                <div class="p-3 rounded mb-2 bg-danger text-white">{{$message}}</div>
+            @enderror
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -40,6 +46,9 @@
                 <input type="text" class="form-control" placeholder="Описание" name="description"
                        aria-describedby="basic-addon1" value="{{$equipment->description}}">
             </div>
+            @error('description')
+                <div class="p-3 rounded mb-2 bg-danger text-white">{{$message}}</div>
+            @enderror
 
             <div class="mb-3 d-flex justify-content-center">
                 <div class="col-md-6">

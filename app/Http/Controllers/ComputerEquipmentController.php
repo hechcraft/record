@@ -63,6 +63,12 @@ class ComputerEquipmentController extends Controller
 
     public function update(Request $request, ComputerEquipment $equipment)
     {
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'amount' => 'required|integer',
+            'description' => 'min:5'
+        ]);
+
         $equipment->update([
             'name' => $request->name,
             'user_id' => $request->user_id,
