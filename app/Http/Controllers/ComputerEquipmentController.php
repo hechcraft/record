@@ -23,6 +23,12 @@ class ComputerEquipmentController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'amount' => 'required|integer',
+            'description' => 'min:5'
+        ]);
+
         ComputerEquipment::create([
             'name' => $request->name,
             'user_id' => $request->user_id,
