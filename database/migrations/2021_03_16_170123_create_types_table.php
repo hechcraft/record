@@ -21,7 +21,7 @@ class CreateTypesTable extends Migration
             $table->string('computer_equipment_type')->nullable();
             $table->timestamps();
 
-            $table->foreign('computer_parts_id')->references('id')->on('computer_parts');
+            $table->foreign('computer_parts_id')->references('id')->on('computer_parts')->onDelete('cascade');
             $table->foreign('computer_equipment_id')->references('id')->on('computer_equipment');
         });
     }

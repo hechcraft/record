@@ -41,7 +41,12 @@ Route::get('/equipments/{equipment}/edit', [\App\Http\Controllers\ComputerEquipm
 Route::put('/equipments/{equipment}', [\App\Http\Controllers\ComputerEquipmentController::class, 'update'])->name('equipments.update');
 Route::post('/equipments', [\App\Http\Controllers\ComputerEquipmentController::class, 'store'])->name('equipments.store');
 Route::delete('/equipments/{equipment}', [\App\Http\Controllers\ComputerEquipmentController::class, 'delete'])->name('equipments.delete');
+Route::get('/equipments/{equipment}', [\App\Http\Controllers\ComputerEquipmentController::class, 'show'])->name('equipments.show');
 
 Route::get('/parts', [\App\Http\Controllers\ComputerPartsController::class, 'index'])->name('parts');
+Route::get('/parts/{part}', [\App\Http\Controllers\ComputerPartsController::class, 'show'])->name('parts.show');
 Route::get('/parts/create', [\App\Http\Controllers\ComputerPartsController::class, 'create'])->name('parts.create');
 Route::post('/parts', [\App\Http\Controllers\ComputerPartsController::class, 'store'])->name('parts.store');
+Route::get('/parts/{part}/edit', [\App\Http\Controllers\ComputerPartsController::class, 'edit'])->name('parts.edit');
+Route::put('/parts/{part}', [\App\Http\Controllers\ComputerPartsController::class, 'update'])->name('parts.update');
+Route::delete('/parts/{part}', [\App\Http\Controllers\ComputerPartsController::class, 'delete'])->name('parts.delete');

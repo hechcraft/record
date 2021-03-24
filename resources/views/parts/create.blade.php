@@ -26,12 +26,15 @@
             @enderror
             <div class="input-group mb-3">
                 <select class="custom-select" name="type">
-                    <option selected>Выберите тип комплектующего</option>
+                    <option selected value="">Выберите тип комплектующего</option>
                     @foreach($types as $type)
                         <option value="{{$type->computer_parts_type}}">{{$type->computer_parts_type}}</option>
                     @endforeach
                 </select>
             </div>
+            @error('type')
+                <div class="p-3 mb-2 rounded bg-danger text-white">{{$message}}</div>
+            @enderror
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Описание</span>

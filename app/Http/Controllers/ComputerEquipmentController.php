@@ -26,7 +26,8 @@ class ComputerEquipmentController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:255',
             'amount' => 'required|integer',
-            'description' => 'min:5'
+            'description' => 'min:5',
+            'type' => 'required',
         ]);
 
         ComputerEquipment::create([
@@ -69,6 +70,12 @@ class ComputerEquipmentController extends Controller
             'description' => 'min:5'
         ]);
 
+        $type = Types::where('computer_equipment_id', $equipment->id);
+        $type->update([
+            'computer_equipment_id' => $equipment->id,
+            'computer_equipment_type' => $request->type,
+        ]);
+
         $equipment->update([
             'name' => $request->name,
             'user_id' => $request->user_id,
@@ -77,6 +84,17 @@ class ComputerEquipmentController extends Controller
             'computer_parts_id' => json_encode($request->computer_parts_id),
         ]);
         return redirect()->route('equipments');
+    }
+
+    public function show(ComputerEquipment $equipment)
+    {
+        $parts = collect();
+
+        foreach (json_decode($equipment->computer_parts_id) as $part){
+            $parts->push(ComputerParts::find($part));
+        }
+
+        return view('equipment.show', ['equipment' => $equipment, 'user' => $equipment->user, 'parts' => $parts]);
     }
 
     public function delete(ComputerEquipment $equipment)

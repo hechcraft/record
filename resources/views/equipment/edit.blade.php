@@ -21,7 +21,7 @@
 
             <div class="input-group mb-3">
                 <select class="custom-select" name="type">
-                    <option selected>{{$currentType[0]->computer_equipment_type}}</option>
+                    <option selected value="{{$currentType[0]->computer_equipment_type}}">{{$currentType[0]->computer_equipment_type}}</option>
                     @foreach($types as $type)
                         <option value="{{$type->computer_equipment_type}}">{{$type->computer_equipment_type}}</option>
                     @endforeach

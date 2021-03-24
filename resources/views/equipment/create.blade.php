@@ -21,12 +21,15 @@
 
             <div class="input-group mb-3">
                 <select class="custom-select" name="type">
-                    <option selected>Выберите тип оборудования</option>
+                    <option selected value="">Выберите тип оборудования</option>
                     @foreach($types as $type)
                         <option value="{{$type->computer_equipment_type}}">{{$type->computer_equipment_type}}</option>
                     @endforeach
                 </select>
             </div>
+            @error('type')
+                <div class="p-3 mb-2 rounded bg-danger text-white">{{$message}}</div>
+            @enderror
             @error('type')
                 <div class="p-3 mb-2 rounded bg-danger text-white">{{$message}}</div>
             @enderror

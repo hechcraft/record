@@ -10,7 +10,7 @@ class ComputerPartsController extends Controller
 {
     public function index()
     {
-        return view('parts.index');
+        return view('parts.index', ['parts'=> ComputerParts::all()]);
     }
 
     public function create()
@@ -20,11 +20,14 @@ class ComputerPartsController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'min:3|required',
             'amount' => 'required|integer',
             'description' => 'min:5',
+            'type' => 'required',
         ]);
+
 
         ComputerParts::create([
             'name' => $request->name,
@@ -41,5 +44,49 @@ class ComputerPartsController extends Controller
         ]);
 
         return redirect()->route('parts');
+    }
+
+    public function edit(ComputerParts $part)
+    {
+        $currentType = Types::where('computer_parts_id', $part->id)->get('computer_parts_type');
+
+        return view('parts.edit', ['part' => $part, 'currentType' => $currentType,
+            'types' => Types::where('computer_parts_type', '!=', 'null')->distinct()->get('computer_parts_type')]);
+    }
+
+    public function update(Request $request, ComputerParts $part)
+    {
+        $request->validate([
+            'name' => 'min:3|required',
+            'amount' => 'required|integer',
+            'description' => 'min:5',
+        ]);
+
+        $type = Types::where('computer_parts_id', $part->id);
+        $type->update([
+            'computer_parts_id' => $part->id,
+            'computer_parts_type' => $request->type,
+        ]);
+
+        $part->update([
+            'name' => $request->name,
+            'user_id' => $request->user_id,
+            'amount' => $request->amount,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('parts');
+    }
+
+    public function show(ComputerParts $part)
+    {
+
+        return view('parts.show', ['part' => $part, 'user' => $part->user]);
+    }
+
+    public function delete(ComputerParts $part)
+    {
+        $part->delete();
+        return redirect()->back();
     }
 }

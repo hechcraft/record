@@ -11,8 +11,8 @@ class TypesController extends Controller
 {
     public function index()
     {
-        $computer_parts_type = Types::where('computer_parts_type', '!=', null)->get();
-        $computer_equipment_type = Types::where('computer_equipment_type', '!=', null)->get();
+        $computer_parts_type = Types::where('computer_parts_type', '!=', null)->distinct()->get('computer_parts_type');
+        $computer_equipment_type = Types::where('computer_equipment_type', '!=', null)->distinct()->get('computer_equipment_type');
         return view('types.index', ['computerPartsType' => $computer_parts_type, 'computerEquipmentType' => $computer_equipment_type]);
     }
 

@@ -19,7 +19,8 @@
                             {{$item->description}}
                         </div>
                         <div class="ml-4 mb-2 form form-inline">
-                            <form action="" class="form-group col-xs-12">
+                            <form action="{{route('equipments.show', ['equipment' => $item->id])}}" method="get"
+                                  class="form-group col-xs-12">
                                 <button class="btn btn-outline-primary">Подробней</button>
                             </form>
                             <form action="{{route('equipments.edit', ['equipment' => $item->id])}}" method="get"
