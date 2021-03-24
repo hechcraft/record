@@ -37,6 +37,8 @@ Route::post('/types', [\App\Http\Controllers\TypesController::class, 'store'])->
 
 Route::get('/equipments', [\App\Http\Controllers\ComputerEquipmentController::class,'index'])->name('equipments');
 Route::get('/equipments/create', [\App\Http\Controllers\ComputerEquipmentController::class, 'create'])->name('equipments.create');
+Route::get('/equipments/{equipment}/edit', [\App\Http\Controllers\ComputerEquipmentController::class, 'edit'])->name('equipments.edit');
+Route::put('/equipments/{equipment}', [\App\Http\Controllers\ComputerEquipmentController::class, 'update'])->name('equipments.update');
 Route::post('/equipments', [\App\Http\Controllers\ComputerEquipmentController::class, 'store'])->name('equipments.store');
+Route::delete('/equipments/{equipment}', [\App\Http\Controllers\ComputerEquipmentController::class, 'delete'])->name('equipments.delete');
 
-Route::view('/test', 'test');

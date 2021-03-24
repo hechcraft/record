@@ -17,7 +17,7 @@
 
             <div class="input-group mb-3">
                 <select class="custom-select" name="type">
-                    <option selected>Open this select menu</option>
+                    <option selected>Выберите тип оборудования</option>
                     @foreach($types as $type)
                         <option value="{{$type->computer_equipment_type}}">{{$type->computer_equipment_type}}</option>
                     @endforeach
@@ -39,26 +39,15 @@
                        aria-describedby="basic-addon1">
             </div>
 
-                <div class="mb-3 ">
+                <div class="mb-3 d-flex justify-content-center">
                     <div class="col-md-6">
-                        <select name="computer_parts_id[]" id="choices-multiple-remove-button" placeholder="Select upto 5 tags" multiple>
+                        <select name="computer_parts_id[]" id="choices-multiple-remove-button" placeholder="Выберите необходимы части ПК" multiple>
                             @foreach($parts as $part)
                                 <option value="{{$part->id}}">{{$part->name}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-
-
-            <div id="new_chq">
-                <input type="hidden" value="1" id="total_chq">
-                <div class='input-group mb-3'>
-
-                    <input type='text' class='form-control' placeholder='computer_parts_id' name='computer_parts_id[]'>
-                    <button type="button" onclick="add()" class="btn btn-outline-primary ml-2">+</button>
-                    <button type="button" onclick="remove()" class="btn btn-outline-danger ml-2">-</button>
-                </div>
-            </div>
             <button type="submit" class="btn btn-outline-success">Подтвердить</button>
         </div>
     </form>

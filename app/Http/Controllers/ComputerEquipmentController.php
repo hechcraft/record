@@ -6,6 +6,7 @@ use App\Models\ComputerEquipment;
 use App\Models\ComputerParts;
 use App\Models\Types;
 use Illuminate\Http\Request;
+use MongoDB\BSON\Type;
 
 class ComputerEquipmentController extends Controller
 {
@@ -16,16 +17,12 @@ class ComputerEquipmentController extends Controller
 
     public function create()
     {
-        return view('equipment.create', ['types' => Types::where('computer_equipment_type', '!=', 'null')->get(),
-                                                'parts' => ComputerParts::all()]);
+        return view('equipment.create', ['types' => Types::where('computer_equipment_type', '!=', 'null')->distinct()->get('computer_equipment_type'),
+            'parts' => ComputerParts::all()]);
     }
 
     public function store(Request $request)
     {
-        $parts = $request->computer_parts_id;
-        array_pop($parts);
-
-        dd($parts);
         ComputerEquipment::create([
             'name' => $request->name,
             'user_id' => $request->user_id,
@@ -37,10 +34,42 @@ class ComputerEquipmentController extends Controller
         $lastEquipment = ComputerEquipment::orderByDesc('id')->first();
 
         Types::create([
-           'computer_equipment_id' => $lastEquipment->id,
+            'computer_equipment_id' => $lastEquipment->id,
             'computer_equipment_type' => $request->type,
         ]);
 
         return redirect()->route('equipments');
+    }
+
+    public function edit(ComputerEquipment $equipment)
+    {
+        $parts = collect();
+
+        foreach (json_decode($equipment->computer_parts_id) as $part){
+            $parts->push(ComputerParts::find($part));
+        }
+
+
+        return view('equipment.edit', ['equipment' => $equipment,
+            'types' => Types::where('computer_equipment_type', '!=', 'null')->distinct()->get('computer_equipment_type'),
+            'parts' => $parts, 'currentType' => Types::where('computer_equipment_id', $equipment->id)->get('computer_equipment_type')]);
+    }
+
+    public function update(Request $request, ComputerEquipment $equipment)
+    {
+        $equipment->update([
+            'name' => $request->name,
+            'user_id' => $request->user_id,
+            'amount' => $request->amount,
+            'description' => $request->description,
+            'computer_parts_id' => json_encode($request->computer_parts_id),
+        ]);
+        return redirect()->route('equipments');
+    }
+
+    public function delete(ComputerEquipment $equipment)
+    {
+        $equipment->delete();
+        return redirect()->back();
     }
 }
