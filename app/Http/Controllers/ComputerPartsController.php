@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\ComputerParts;
 use App\Models\Types;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ComputerPartsController extends Controller
 {
     public function index()
     {
-        return view('parts.index', ['parts'=> ComputerParts::all()]);
+        return view('parts.index', ['parts' => ComputerParts::all()]);
     }
 
     public function create()
     {
-        return view('parts.create', ['types' => Types::where('computer_parts_type', '!=', 'null')->distinct()->get('computer_parts_type')]);
+        return view('parts.create', ['users' => User::all(),'types' => Types::where('computer_parts_type', '!=', 'null')->distinct()->get('computer_parts_type')]);
     }
 
     public function store(Request $request)
@@ -26,8 +27,8 @@ class ComputerPartsController extends Controller
             'amount' => 'required|integer',
             'description' => 'min:5',
             'type' => 'required',
+            'user_id' => 'required',
         ]);
-
 
         ComputerParts::create([
             'name' => $request->name,
@@ -50,7 +51,7 @@ class ComputerPartsController extends Controller
     {
         $currentType = Types::where('computer_parts_id', $part->id)->get('computer_parts_type');
 
-        return view('parts.edit', ['part' => $part, 'currentType' => $currentType,
+        return view('parts.edit', ['part' => $part, 'currentType' => $currentType, 'users' => User::all(),
             'types' => Types::where('computer_parts_type', '!=', 'null')->distinct()->get('computer_parts_type')]);
     }
 
@@ -60,6 +61,8 @@ class ComputerPartsController extends Controller
             'name' => 'min:3|required',
             'amount' => 'required|integer',
             'description' => 'min:5',
+            'type' => 'required',
+            'user_id' => 'required',
         ]);
 
         $type = Types::where('computer_parts_id', $part->id);
@@ -80,7 +83,6 @@ class ComputerPartsController extends Controller
 
     public function show(ComputerParts $part)
     {
-
         return view('parts.show', ['part' => $part, 'user' => $part->user]);
     }
 

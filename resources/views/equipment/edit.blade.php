@@ -29,6 +29,18 @@
             </div>
 
             <div class="input-group mb-3">
+                <select class="custom-select" name="user_id">
+                    <option selected value="{{$equipment->user_id}}">{{$equipment->user->name}}</option>
+                    @foreach($users as $user)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('user_id')
+            <div class="p-3 mb-2 rounded bg-danger text-white">{{$message}}</div>
+            @enderror
+
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Количество</span>
                 </div>

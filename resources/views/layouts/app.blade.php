@@ -54,8 +54,11 @@
                                 <a class="dropdown-item" href="{{route('parts.create')}}">
                                     Добавить комплектующее
                                 </a>
-                                <a class="dropdown-item" href="">
-                                    ??? Типы комплектующих ???
+                                <a class="dropdown-item" href="{{route('types')}}">
+                                    Типы комплектующих
+                                </a>
+                                <a class="dropdown-item" href="{{route('part.types.create')}}">
+                                    Добавить новый тип комплектующего
                                 </a>
                             </div>
                         </li>
@@ -73,8 +76,11 @@
                                 <a class="dropdown-item" href="{{route('equipments.create')}}">
                                     Добавить новое оборудование
                                 </a>
-                                <a class="dropdown-item" href="">
-                                    ??? Типы оборудования ???
+                                <a class="dropdown-item" href="{{route('types')}}">
+                                    Типы оборудования
+                                </a>
+                                <a class="dropdown-item" href="{{route('equipment.types.create')}}">
+                                    Добавить новый тип оборудования
                                 </a>
                             </div>
                         </li>
@@ -94,22 +100,6 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('users.types.create') }}">
                                     Добавить новый тип пользователя
-                                </a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Типы
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('types') }}">
-                                    Вывести все типы
-                                </a>
-                                <a class="dropdown-item" href="{{ route('types.create') }}">
-                                    Добавить новый тип
                                 </a>
                             </div>
                         </li>

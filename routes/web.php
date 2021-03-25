@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
 Route::get('/users/types', [\App\Http\Controllers\UserController::class, 'types'])->name('users.types');
@@ -33,6 +34,8 @@ Route::delete('/users/types/{id}', [\App\Http\Controllers\UserController::class,
 
 Route::get('/types', [\App\Http\Controllers\TypesController::class, 'index'])->name('types');
 Route::get('/types/create', [\App\Http\Controllers\TypesController::class, 'create'])->name('types.create');
+Route::get('/equipments/types/create', [\App\Http\Controllers\TypesController::class, 'equipmentCreate'])->name('equipment.types.create');
+Route::get('/part/types/create', [\App\Http\Controllers\TypesController::class, 'partCreate'])->name('part.types.create');
 Route::post('/types', [\App\Http\Controllers\TypesController::class, 'store'])->name('types.store');
 
 Route::get('/equipments', [\App\Http\Controllers\ComputerEquipmentController::class,'index'])->name('equipments');
@@ -44,8 +47,8 @@ Route::delete('/equipments/{equipment}', [\App\Http\Controllers\ComputerEquipmen
 Route::get('/equipments/{equipment}', [\App\Http\Controllers\ComputerEquipmentController::class, 'show'])->name('equipments.show');
 
 Route::get('/parts', [\App\Http\Controllers\ComputerPartsController::class, 'index'])->name('parts');
-Route::get('/parts/{part}', [\App\Http\Controllers\ComputerPartsController::class, 'show'])->name('parts.show');
 Route::get('/parts/create', [\App\Http\Controllers\ComputerPartsController::class, 'create'])->name('parts.create');
+Route::get('/parts/{part}', [\App\Http\Controllers\ComputerPartsController::class, 'show'])->name('parts.show');
 Route::post('/parts', [\App\Http\Controllers\ComputerPartsController::class, 'store'])->name('parts.store');
 Route::get('/parts/{part}/edit', [\App\Http\Controllers\ComputerPartsController::class, 'edit'])->name('parts.edit');
 Route::put('/parts/{part}', [\App\Http\Controllers\ComputerPartsController::class, 'update'])->name('parts.update');

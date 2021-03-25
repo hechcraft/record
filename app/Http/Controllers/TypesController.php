@@ -21,11 +21,21 @@ class TypesController extends Controller
         return view('types.create');
     }
 
+    public function equipmentCreate()
+    {
+        return view('types.equipmentCreate');
+    }
+
+    public function partCreate()
+    {
+        return view('types.partCreate');
+    }
+
     public function store(Request $request)
     {
-        if ($request->isPart && $request->isEquipment) {
-            return redirect()->back()->with('customError', 'Не может быть выбрана два типа одновременно');
-        }
+        $request->validate([
+            'typeName' => 'required'
+        ]);
 
         if ($request->isPart){
             Types::create([

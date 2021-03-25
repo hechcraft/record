@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ComputerEquipment;
 use App\Models\ComputerParts;
 use App\Models\Types;
+use App\Models\User;
 use Illuminate\Http\Request;
 use MongoDB\BSON\Type;
 
@@ -18,7 +19,7 @@ class ComputerEquipmentController extends Controller
     public function create()
     {
         return view('equipment.create', ['types' => Types::where('computer_equipment_type', '!=', 'null')->distinct()->get('computer_equipment_type'),
-            'parts' => ComputerParts::all()]);
+            'parts' => ComputerParts::all(), 'users' => User::all()]);
     }
 
     public function store(Request $request)
@@ -28,6 +29,7 @@ class ComputerEquipmentController extends Controller
             'amount' => 'required|integer',
             'description' => 'min:5',
             'type' => 'required',
+            'user_id' => 'required'
         ]);
 
         ComputerEquipment::create([
@@ -56,10 +58,10 @@ class ComputerEquipmentController extends Controller
             $parts->push(ComputerParts::find($part));
         }
 
-
         return view('equipment.edit', ['equipment' => $equipment,
             'types' => Types::where('computer_equipment_type', '!=', 'null')->distinct()->get('computer_equipment_type'),
-            'parts' => $parts, 'currentType' => Types::where('computer_equipment_id', $equipment->id)->get('computer_equipment_type')]);
+            'parts' => $parts, 'currentType' => Types::where('computer_equipment_id', $equipment->id)->get('computer_equipment_type'),
+            'users' => User::all()]);
     }
 
     public function update(Request $request, ComputerEquipment $equipment)
@@ -83,6 +85,7 @@ class ComputerEquipmentController extends Controller
             'description' => $request->description,
             'computer_parts_id' => json_encode($request->computer_parts_id),
         ]);
+
         return redirect()->route('equipments');
     }
 
