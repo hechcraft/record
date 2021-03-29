@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
+Route::get('/users/export', [\App\Http\Controllers\UserController::class, 'export']);
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
 Route::get('/users/types', [\App\Http\Controllers\UserController::class, 'types'])->name('users.types');
 Route::get('/users/types/create', [\App\Http\Controllers\UserController::class, 'typeCreate'])->name('users.types.create');
@@ -53,3 +54,8 @@ Route::post('/parts', [\App\Http\Controllers\ComputerPartsController::class, 'st
 Route::get('/parts/{part}/edit', [\App\Http\Controllers\ComputerPartsController::class, 'edit'])->name('parts.edit');
 Route::put('/parts/{part}', [\App\Http\Controllers\ComputerPartsController::class, 'update'])->name('parts.update');
 Route::delete('/parts/{part}', [\App\Http\Controllers\ComputerPartsController::class, 'delete'])->name('parts.delete');
+
+Route::get('/exports/number/equipment', [\App\Http\Controllers\ExportsController::class, 'equipmentRegistrationNumber'])->name('equipmentRegistrationNumber');
+Route::get('/exports/number/part', [\App\Http\Controllers\ExportsController::class, 'partRegistrationNumber'])->name('partRegistrationNumber');
+Route::get('/exports/number/equipment/get', [\App\Http\Controllers\ExportsController::class, 'printEquipmentRegistrationNumber'])->name('printEquipmentRegistrationNumber');
+Route::get('/exports/number/part/get', [\App\Http\Controllers\ExportsController::class, 'printPartRegistrationNumber'])->name('printPartRegistrationNumber');
