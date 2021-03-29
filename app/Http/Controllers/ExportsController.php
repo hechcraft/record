@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EquipmentAll;
 use App\Models\ComputerEquipment;
 use App\Models\ComputerParts;
 use Illuminate\Http\Request;
@@ -42,6 +43,32 @@ class ExportsController extends Controller
         }
 
         $export = new equipmentNumbers($partCollection);
+
+        return Excel::download($export, 'test.xlsx');
+    }
+
+    public function equipment()
+    {
+        return view('exports.equipment', ['equipments' => ComputerEquipment::all()]);
+    }
+
+    public function equipmentAll()
+    {
+        $equipments = ComputerEquipment::all();
+
+        $export = new EquipmentAll($equipments);
+
+        return Excel::download($export, 'test.xlsx');
+    }
+
+    public function selectEquipment(Request $request)
+    {
+        $equipmentCollection = collect();
+        foreach ($request->all() as $id){
+            $equipmentCollection->push(ComputerEquipment::find($id));
+        }
+
+        $export = new equipmentNumbers($equipmentCollection);
 
         return Excel::download($export, 'test.xlsx');
     }

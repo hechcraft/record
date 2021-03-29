@@ -59,3 +59,6 @@ Route::get('/exports/number/equipment', [\App\Http\Controllers\ExportsController
 Route::get('/exports/number/part', [\App\Http\Controllers\ExportsController::class, 'partRegistrationNumber'])->name('partRegistrationNumber');
 Route::get('/exports/number/equipment/get', [\App\Http\Controllers\ExportsController::class, 'printEquipmentRegistrationNumber'])->name('printEquipmentRegistrationNumber');
 Route::get('/exports/number/part/get', [\App\Http\Controllers\ExportsController::class, 'printPartRegistrationNumber'])->name('printPartRegistrationNumber');
+Route::get('/exports/equipment', [\App\Http\Controllers\ExportsController::class, 'equipment'])->name('export.equipment');
+Route::get('/exports/equipment/all', [\App\Http\Controllers\ExportsController::class, 'equipmentAll'])->name('export.equipment.all');
+Route::get('/exports/equipment/get', [\App\Http\Controllers\ExportsController::class, 'selectEquipment'])->name('export.select.equipment');
